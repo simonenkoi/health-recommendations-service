@@ -24,8 +24,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.2.0")
+    implementation( "io.projectreactor.tools:blockhound:1.0.0.M3")
     runtimeOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
@@ -33,6 +32,7 @@ dependencies {
     }
     testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
     testImplementation("io.projectreactor:reactor-test")
+    testImplementation("io.mockk:mockk:1.9")
 }
 
 tasks.withType<Test> {
