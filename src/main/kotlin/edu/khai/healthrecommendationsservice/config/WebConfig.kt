@@ -9,15 +9,8 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.context.support.ResourceBundleMessageSource
 import org.springframework.core.io.ClassPathResource
 import org.springframework.web.reactive.config.EnableWebFlux
-import org.springframework.web.reactive.config.ViewResolverRegistry
 import org.springframework.web.reactive.config.WebFluxConfigurer
-import org.thymeleaf.spring5.ISpringWebFluxTemplateEngine
-import org.thymeleaf.spring5.SpringWebFluxTemplateEngine
-import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver
-import org.thymeleaf.spring5.view.reactive.ThymeleafReactiveViewResolver
-import org.thymeleaf.templatemode.TemplateMode
-import org.thymeleaf.templateresolver.ITemplateResolver
-import java.util.*
+import java.util.Properties
 
 @Configuration
 @EnableWebFlux
@@ -27,36 +20,6 @@ class WebConfig : ApplicationContextAware, WebFluxConfigurer {
 
     override fun setApplicationContext(context: ApplicationContext) {
         this.context = context
-    }
-
-    @Bean
-    fun thymeleafTemplateResolver(): ITemplateResolver {
-        val resolver = SpringResourceTemplateResolver()
-        resolver.setApplicationContext(context)
-        resolver.prefix = "classpath:views/"
-        resolver.suffix = ".html"
-        resolver.templateMode = TemplateMode.HTML
-        resolver.isCacheable = false
-        resolver.checkExistence = false
-        return resolver
-    }
-
-    @Bean
-    fun thymeleafTemplateEngine(): ISpringWebFluxTemplateEngine {
-        val templateEngine = SpringWebFluxTemplateEngine()
-        templateEngine.setTemplateResolver(thymeleafTemplateResolver())
-        return templateEngine
-    }
-
-    @Bean
-    fun thymeleafReactiveViewResolver(): ThymeleafReactiveViewResolver {
-        val viewResolver = ThymeleafReactiveViewResolver()
-        viewResolver.templateEngine = thymeleafTemplateEngine()
-        return viewResolver
-    }
-
-    override fun configureViewResolvers(registry: ViewResolverRegistry) {
-        registry.viewResolver(thymeleafReactiveViewResolver())
     }
 
     @Bean
