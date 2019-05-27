@@ -1,8 +1,9 @@
-label.welcome: Welcome
-label.content: This is sample project for Internalization and Localization in Webflux
-label.changeLang: Supported languages
-
-label.lang.en: English
-label.lang.fr: French
-label.lang.cn: Chinese
-label.lang.de: German
+rules:
+  bmi:
+    severe-deficit: Выраженный дефицит массы тела
+    deficit: Недостаточная (дефицит) масса тела
+    norm: Норма
+    excess: Избыточная масса тела (предожирение)
+    obesity: Ожирение
+    severe-obesity: Ожирение резкое
+    very-severe-obesity: Очень резкое ожирение

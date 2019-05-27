@@ -1,9 +1,13 @@
 package edu.khai.healthrecommendationsservice.service.rule
 
 import edu.khai.healthrecommendationsservice.api.Metrics
+import edu.khai.healthrecommendationsservice.service.RecommendationService
 import org.springframework.beans.factory.annotation.Autowired
 
 abstract class Rule<T> {
+
+    @Autowired
+    protected lateinit var recommendationService: RecommendationService
 
     @Autowired
     fun register(ruleRegistry: RuleRegistry) {
