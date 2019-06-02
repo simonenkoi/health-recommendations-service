@@ -27,3 +27,9 @@ class BmiRule : Rule<Double?>() {
         }
     }
 }
+
+fun main() {
+    val set1 = setOf("1", "2", "12", "5", "28")
+    val set2 = setOf("1", "2", "3", "4", "5", "12")
+    print(set1 - set2)
+}

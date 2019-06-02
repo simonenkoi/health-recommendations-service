@@ -10,8 +10,8 @@ class RecommendationRouter {
 
     @Bean
     fun route(recommendationHandler: RecommendationHandler) = router {
-        "/index".nest {
-            POST("", recommendationHandler::get)
+        "/recommendation".nest {
+            POST("", recommendationHandler::getRecommendations)
         }
     }
 

@@ -12,6 +12,7 @@ import org.springframework.web.reactive.config.EnableWebFlux
 import org.springframework.web.reactive.config.WebFluxConfigurer
 import java.util.Properties
 
+
 @Configuration
 @EnableWebFlux
 class WebConfig : ApplicationContextAware, WebFluxConfigurer {

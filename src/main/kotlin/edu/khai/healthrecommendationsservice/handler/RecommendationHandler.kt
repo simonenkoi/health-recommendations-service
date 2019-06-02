@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono
 @Component
 class RecommendationHandler constructor(private val ruleRegistry: RuleRegistry) {
 
-    fun get(request: ServerRequest): Mono<ServerResponse> {
+    fun getRecommendations(request: ServerRequest): Mono<ServerResponse> {
         return request.bodyToMono(Metrics::class.java)
             .map { ruleRegistry.getRecomendations(it) }
             .map { Mono.just(it) }
