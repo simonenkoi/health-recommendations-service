@@ -1,9 +1,0 @@
-rules:
-  bmi:
-    severe-deficit: Выраженный дефицит массы тела
-    deficit: Недостаточная (дефицит) масса тела
-    norm: Норма
-    excess: Избыточная масса тела (предожирение)
-    obesity: Ожирение
-    severe-obesity: Ожирение резкое
-    very-severe-obesity: Очень резкое ожирение

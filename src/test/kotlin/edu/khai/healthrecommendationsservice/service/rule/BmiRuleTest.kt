@@ -1,77 +1,55 @@
 package edu.khai.healthrecommendationsservice.service.rule
 
 import edu.khai.healthrecommendationsservice.api.Metrics
-import edu.khai.healthrecommendationsservice.service.RecommendationMessageService
-import io.mockk.every
-import io.mockk.impl.annotations.InjectMockKs
-import io.mockk.impl.annotations.MockK
-import io.mockk.junit5.MockKExtension
-import io.mockk.slot
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
 
-@ExtendWith(MockKExtension::class)
 internal class BmiRuleTest {
 
-    @InjectMockKs
     private var bmiRule: BmiRule = BmiRule()
 
-    @MockK
-    private lateinit var recommendationMessageService: RecommendationMessageService
-
     companion object {
-        const val DEFAULT_HEIGHT: Double = 1.7
-        const val SEVERE_DEFICIT_RECOMMENDATION: String = "rules.bmi.severe-deficit"
-        const val DEFICIT_RECOMMENDATION: String = "rules.bmi.deficit"
-        const val NORM_RECOMMENDATION: String = "rules.bmi.norm"
-        const val EXCESS_RECOMMENDATION: String = "rules.bmi.excess"
-        const val OBESITY_RECOMMENDATION: String = "rules.bmi.obesity"
-        const val SEVERE_OBESITY_RECOMMENDATION: String = "rules.bmi.severe-obesity"
-        const val VERY_SEVERE_OBESITY_RECOMMENDATION: String = "rules.bmi.very-severe-obesity"
-    }
-
-    @BeforeEach
-    fun init() {
-        val slot = slot<String>()
-        every { recommendationMessageService.getMessage(capture(slot)) } answers { slot.captured }
+        const val DEFAULT_HEIGHT: Double = 170.0
+        const val DEFICIT_RECOMMENDATION: String = "rule.bmi.deficit"
+        const val NORM_RECOMMENDATION: String = "rule.bmi.norm"
+        const val EXCESS_RECOMMENDATION: String = "rule.bmi.excess"
     }
 
     @Test
-    fun emptyMetricsShouldReturnEmptyRecommendation() {
+    fun emptyMetricsShouldReturnNullRecommendation() {
         val recommendation = bmiRule.getRecommendation(Metrics())
-        assertEquals("", recommendation)
+        assertNull(recommendation)
     }
 
     @Test
-    fun emptyWeightShouldReturnEmptyRecommendation() {
+    fun emptyWeightShouldReturnNullRecommendation() {
         val recommendation = bmiRule.getRecommendation(Metrics(height = 1.0))
-        assertEquals("", recommendation)
+        assertNull(recommendation)
     }
 
     @Test
-    fun emptyHeightShouldReturnEmptyRecommendation() {
+    fun emptyHeightShouldReturnNullRecommendation() {
         val recommendation = bmiRule.getRecommendation(Metrics(weight = 1.0))
-        assertEquals("", recommendation)
+        assertNull(recommendation)
     }
 
     @Test
     fun severeDeficitLowerBoundShouldReturnCorrectRecommendation() {
         val recommendation = bmiRule.getRecommendation(Metrics(weight = 0.0, height = DEFAULT_HEIGHT))
-        assertEquals(SEVERE_DEFICIT_RECOMMENDATION, recommendation)
+        assertEquals(DEFICIT_RECOMMENDATION, recommendation)
     }
 
     @Test
     fun severeDeficitMiddleShouldReturnCorrectRecommendation() {
         val recommendation = bmiRule.getRecommendation(Metrics(weight = 23.0, height = DEFAULT_HEIGHT))
-        assertEquals(SEVERE_DEFICIT_RECOMMENDATION, recommendation)
+        assertEquals(DEFICIT_RECOMMENDATION, recommendation)
     }
 
     @Test
     fun severeDeficitUpperBoundShouldReturnCorrectRecommendation() {
         val recommendation = bmiRule.getRecommendation(Metrics(weight = 46.0, height = DEFAULT_HEIGHT))
-        assertEquals(SEVERE_DEFICIT_RECOMMENDATION, recommendation)
+        assertEquals(DEFICIT_RECOMMENDATION, recommendation)
     }
 
     @Test
@@ -131,54 +109,54 @@ internal class BmiRuleTest {
     @Test
     fun obesityLowerBoundShouldReturnCorrectRecommendation() {
         val recommendation = bmiRule.getRecommendation(Metrics(weight = 87.0, height = DEFAULT_HEIGHT))
-        assertEquals(OBESITY_RECOMMENDATION, recommendation)
+        assertEquals(EXCESS_RECOMMENDATION, recommendation)
     }
 
     @Test
     fun obesityMiddleShouldReturnCorrectRecommendation() {
         val recommendation = bmiRule.getRecommendation(Metrics(weight = 94.0, height = DEFAULT_HEIGHT))
-        assertEquals(OBESITY_RECOMMENDATION, recommendation)
+        assertEquals(EXCESS_RECOMMENDATION, recommendation)
     }
 
     @Test
     fun obesityUpperBoundShouldReturnCorrectRecommendation() {
         val recommendation = bmiRule.getRecommendation(Metrics(weight = 101.0, height = DEFAULT_HEIGHT))
-        assertEquals(OBESITY_RECOMMENDATION, recommendation)
+        assertEquals(EXCESS_RECOMMENDATION, recommendation)
     }
 
     @Test
     fun severeObesityLowerBoundShouldReturnCorrectRecommendation() {
         val recommendation = bmiRule.getRecommendation(Metrics(weight = 102.0, height = DEFAULT_HEIGHT))
-        assertEquals(SEVERE_OBESITY_RECOMMENDATION, recommendation)
+        assertEquals(EXCESS_RECOMMENDATION, recommendation)
     }
 
     @Test
     fun severeObesityMiddleShouldReturnCorrectRecommendation() {
         val recommendation = bmiRule.getRecommendation(Metrics(weight = 108.0, height = DEFAULT_HEIGHT))
-        assertEquals(SEVERE_OBESITY_RECOMMENDATION, recommendation)
+        assertEquals(EXCESS_RECOMMENDATION, recommendation)
     }
 
     @Test
     fun severeObesityUpperBoundShouldReturnCorrectRecommendation() {
         val recommendation = bmiRule.getRecommendation(Metrics(weight = 115.0, height = DEFAULT_HEIGHT))
-        assertEquals(SEVERE_OBESITY_RECOMMENDATION, recommendation)
+        assertEquals(EXCESS_RECOMMENDATION, recommendation)
     }
 
     @Test
     fun verySevereObesityLowerBoundShouldReturnCorrectRecommendation() {
         val recommendation = bmiRule.getRecommendation(Metrics(weight = 116.0, height = DEFAULT_HEIGHT))
-        assertEquals(VERY_SEVERE_OBESITY_RECOMMENDATION, recommendation)
+        assertEquals(EXCESS_RECOMMENDATION, recommendation)
     }
 
     @Test
     fun verySevereObesityMiddleShouldReturnCorrectRecommendation() {
         val recommendation = bmiRule.getRecommendation(Metrics(weight = 248.0, height = DEFAULT_HEIGHT))
-        assertEquals(VERY_SEVERE_OBESITY_RECOMMENDATION, recommendation)
+        assertEquals(EXCESS_RECOMMENDATION, recommendation)
     }
 
     @Test
     fun verySevereObesityUpperBoundShouldReturnCorrectRecommendation() {
         val recommendation = bmiRule.getRecommendation(Metrics(weight = 380.0, height = DEFAULT_HEIGHT))
-        assertEquals(VERY_SEVERE_OBESITY_RECOMMENDATION, recommendation)
+        assertEquals(EXCESS_RECOMMENDATION, recommendation)
     }
 }

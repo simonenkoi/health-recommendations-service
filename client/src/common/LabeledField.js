@@ -1,14 +1,21 @@
 import React from "react";
-import {Field} from "formik";
+import {ErrorMessage, Field} from "formik";
 import "../App.css";
 import {Col, Container, Row} from "react-bootstrap";
 
 const LabeledField = (props) => {
     return (
-        <Container>
+        <Container style={{marginBottom: "10px"}}>
             <Row className="justify-content-md-center">
-                <Col sm={2}><label htmlFor={props.name}>{props.labelText}</label></Col>
-                <Col sm={4}><Field type="number" id={props.name} name={props.name}/></Col>
+                <Col sm={6} style={{textAlign: "right"}}>
+                    <label htmlFor={props.name}>{props.labelText}</label>
+                </Col>
+                <Col sm={6}>
+                    <Field type="number" id={props.name} name={props.name} style={{width: "100%"}}/>
+                </Col>
+            </Row>
+            <Row className="justify-content-md-center text-danger">
+                <ErrorMessage name={props.name} component="div"/>
             </Row>
         </Container>
     );
