@@ -1,7 +1,7 @@
 package edu.khai.healthrecommendationsservice.service.rule
 
 import edu.khai.healthrecommendationsservice.api.Metrics
-import edu.khai.healthrecommendationsservice.service.RecommendationService
+import edu.khai.healthrecommendationsservice.service.RecommendationMessageService
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
@@ -19,7 +19,7 @@ internal class BmiRuleTest {
     private var bmiRule: BmiRule = BmiRule()
 
     @MockK
-    private lateinit var recommendationService: RecommendationService
+    private lateinit var recommendationMessageService: RecommendationMessageService
 
     companion object {
         const val DEFAULT_HEIGHT: Double = 1.7
@@ -35,7 +35,7 @@ internal class BmiRuleTest {
     @BeforeEach
     fun init() {
         val slot = slot<String>()
-        every { recommendationService.getMessage(capture(slot)) } answers { slot.captured }
+        every { recommendationMessageService.getMessage(capture(slot)) } answers { slot.captured }
     }
 
     @Test

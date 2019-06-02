@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service
 import java.util.Locale
 
 @Service
-class PropertyRecommendationService constructor(private var messageSource: MessageSource) : RecommendationService {
+class PropertyRecommendationMessageService constructor(private var messageSource: MessageSource) : RecommendationMessageService {
 
     override fun getMessage(code: String, locale: Locale): String {
         return messageSource.getMessage(code, null, locale)

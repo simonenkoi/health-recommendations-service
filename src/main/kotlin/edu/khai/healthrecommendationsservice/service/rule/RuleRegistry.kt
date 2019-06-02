@@ -12,7 +12,7 @@ class RuleRegistry {
         registry.add(rule)
     }
 
-    fun getRecomendations(metrics: Metrics): String {
-        return registry.joinToString(separator = "\n") { it.getRecommendation(metrics) }
+    fun getRecommendations(metrics: Metrics): List<String> {
+        return registry.mapNotNull { it.getRecommendation(metrics) }
     }
 }

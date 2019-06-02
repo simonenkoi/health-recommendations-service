@@ -13,17 +13,17 @@ class BmiRule : Rule<Double?>() {
         }
     }
 
-    override fun evaluateRecommendation(metric: Double?): String {
+    override fun evaluateRecommendation(metric: Double?): String? {
         return when {
-            metric == null -> ""
-            metric < 16 -> recommendationService.getMessage("rules.bmi.severe-deficit")
-            metric >= 16 && metric < 18.5 -> recommendationService.getMessage("rules.bmi.deficit")
-            metric >= 18.5 && metric < 25 -> recommendationService.getMessage("rules.bmi.norm")
-            metric >= 25 && metric < 30 -> recommendationService.getMessage("rules.bmi.excess")
-            metric >= 30 && metric < 35 -> recommendationService.getMessage("rules.bmi.obesity")
-            metric >= 35 && metric < 40 -> recommendationService.getMessage("rules.bmi.severe-obesity")
-            metric >= 40 -> recommendationService.getMessage("rules.bmi.very-severe-obesity")
-            else -> ""
+            metric == null -> null
+            metric < 16 -> recommendationMessageService.getMessage("rules.bmi.severe-deficit")
+            metric >= 16 && metric < 18.5 -> recommendationMessageService.getMessage("rules.bmi.deficit")
+            metric >= 18.5 && metric < 25 -> recommendationMessageService.getMessage("rules.bmi.norm")
+            metric >= 25 && metric < 30 -> recommendationMessageService.getMessage("rules.bmi.excess")
+            metric >= 30 && metric < 35 -> recommendationMessageService.getMessage("rules.bmi.obesity")
+            metric >= 35 && metric < 40 -> recommendationMessageService.getMessage("rules.bmi.severe-obesity")
+            metric >= 40 -> recommendationMessageService.getMessage("rules.bmi.very-severe-obesity")
+            else -> null
         }
     }
 }
