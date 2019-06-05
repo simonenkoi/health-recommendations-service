@@ -83,7 +83,7 @@ class App extends Component {
                 </Formik>
                 <Modal show={this.state.modalShowed} onHide={this.hideModal}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Рекоммендации</Modal.Title>
+                        <Modal.Title>Рекомендации</Modal.Title>
                     </Modal.Header>
 
                     <Modal.Body>
