@@ -12,8 +12,7 @@ class SleepDurationRule : Rule<Int?>() {
     override fun evaluateRecommendation(metric: Int?): String? {
         return when {
             metric == null -> null
-            metric <= 5 -> "rule.sleep-duration.extreme-deficit"
-            metric <= 6 -> "rule.sleep-duration.deficit"
+            metric <= 5 -> "rule.sleep-duration.deficit"
             metric <= 8 -> "rule.sleep-duration.norm"
             else -> "rule.sleep-duration.excess"
         }

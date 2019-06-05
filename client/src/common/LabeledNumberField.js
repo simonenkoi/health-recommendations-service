@@ -3,7 +3,7 @@ import {ErrorMessage, Field} from "formik";
 import "../App.css";
 import {Col, Container, Row} from "react-bootstrap";
 
-const LabeledField = (props) => {
+const LabeledNumberField = (props) => {
     return (
         <Container style={{marginBottom: "10px"}}>
             <Row className="justify-content-md-center">
@@ -19,6 +19,6 @@ const LabeledField = (props) => {
             </Row>
         </Container>
     );
-}
+};
 
-export default LabeledField;
+export default LabeledNumberField;

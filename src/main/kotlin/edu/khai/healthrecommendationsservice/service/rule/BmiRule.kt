@@ -18,7 +18,8 @@ class BmiRule : Rule<Double?>() {
             metric == null -> null
             metric < 18.5 -> "rule.bmi.deficit"
             metric < 25 -> "rule.bmi.norm"
-            else -> "rule.bmi.excess"
+            metric < 30 -> "rule.bmi.excess"
+            else -> "rule.bmi.obesity"
         }
     }
 }

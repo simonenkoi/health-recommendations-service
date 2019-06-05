@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import {Form, Formik} from "formik";
 import "./App.css";
-import LabeledField from "./common/LabeledField";
+import LabeledNumberField from "./common/LabeledNumberField";
 import {Button, Container, Modal, Row} from "react-bootstrap";
 import {getRecommendationMessage} from "./common/recommendation-message-holder";
 import ReactHtmlParser from "react-html-parser";
 import * as Yup from "yup";
+import SleepOptionField from "./common/SleepOptionField";
 
 const Schema = Yup.object()
     .shape({
@@ -13,8 +14,6 @@ const Schema = Yup.object()
                    .positive("Рост не может быть отрицательным"),
                weight: Yup.number()
                    .positive("Вес не может быть отрицательным"),
-               sleepDuration: Yup.number()
-                   .positive("Время сна не может быть отрицательным"),
                physicalFrequency: Yup.number()
                    .min(0, "Дайте оценку от 0 до 5")
                    .max(5, "Дайте оценку от 0 до 5"),
@@ -45,7 +44,7 @@ class App extends Component {
             <Container style={{marginTop: "15%"}}>
                 <Formik
                     onSubmit={(values, {setSubmitting}) => {
-                        fetch("http://localhost:8080/recommendation", {
+                        fetch("http://localhost:5000/recommendation", {
                             method: "POST",
                             headers: {
                                 Accept: "application/json",
@@ -66,12 +65,12 @@ class App extends Component {
                         <Form>
                             <Container>
                                 <Row>
-                                    <LabeledField name="weight" labelText="Вес, кг"/>
-                                    <LabeledField name="height" labelText="Рост, см"/>
-                                    <LabeledField name="sleepDuration" labelText="Время сна, часы"/>
-                                    <LabeledField name="physicalFrequency"
-                                                  labelText="Количество физической активности, (0-5)"/>
-                                    <LabeledField name="physicalState" labelText="Физическое состояние, (0-5)"/>
+                                    <LabeledNumberField name="weight" labelText="Вес, кг"/>
+                                    <LabeledNumberField name="height" labelText="Рост, см"/>
+                                    <SleepOptionField name="sleepDuration" labelText="Время сна, часы"/>
+                                    <LabeledNumberField name="physicalFrequency"
+                                                        labelText="Количество физической активности, (0-5)"/>
+                                    <LabeledNumberField name="physicalState" labelText="Физическое состояние, (0-5)"/>
                                 </Row>
                                 <Row className="justify-content-md-center">
                                     <Button type="submit" disabled={isSubmitting}>
@@ -90,7 +89,14 @@ class App extends Component {
                     <Modal.Body>
                         {this.state.recommendations.map((rec, i) => {
                             let separator = i !== (this.state.recommendations.length - 1) ? "<hr>" : "";
-                            return ReactHtmlParser(rec + (separator))
+                            return (
+                                <div>
+                                    <p><b>{ReactHtmlParser(rec.assessment)}</b></p>
+                                    {rec.aftermath ? <p><b>Последствия: </b> {ReactHtmlParser(rec.aftermath)}</p> : ""}
+                                    <p><b>Рекомендации: </b>{ReactHtmlParser(rec.recommendation)}</p>
+                                    {ReactHtmlParser(separator)}
+                                </div>
+                            )
                         })}
                     </Modal.Body>
 

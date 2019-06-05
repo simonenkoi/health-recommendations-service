@@ -10,7 +10,6 @@ internal class SleepDurationRuleTest {
     private var sleepDurationRule: SleepDurationRule = SleepDurationRule()
 
     companion object {
-        const val EXTREME_DEFICIT_RECOMMENDATION: String = "rule.sleep-duration.extreme-deficit"
         const val DEFICIT_RECOMMENDATION: String = "rule.sleep-duration.deficit"
         const val NORM_RECOMMENDATION: String = "rule.sleep-duration.norm"
         const val EXCESS_RECOMMENDATION: String = "rule.sleep-duration.excess"
@@ -23,14 +22,8 @@ internal class SleepDurationRuleTest {
     }
 
     @Test
-    fun extremeDeficitShouldReturnCorrectRecommendation() {
-        val recommendation = sleepDurationRule.getRecommendation(Metrics(sleepDuration = 4))
-        assertEquals(EXTREME_DEFICIT_RECOMMENDATION, recommendation)
-    }
-
-    @Test
     fun deficitShouldReturnCorrectRecommendation() {
-        val recommendation = sleepDurationRule.getRecommendation(Metrics(sleepDuration = 6))
+        val recommendation = sleepDurationRule.getRecommendation(Metrics(sleepDuration = 4))
         assertEquals(DEFICIT_RECOMMENDATION, recommendation)
     }
 
