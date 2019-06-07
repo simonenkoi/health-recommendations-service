@@ -20,6 +20,18 @@ const Schema = Yup.object()
                physicalState: Yup.number()
                    .min(0, "Дайте оценку от 0 до 5")
                    .max(5, "Дайте оценку от 0 до 5"),
+               coffee: Yup.number()
+                   .min(0, "Дайте оценку от 0 до 5")
+                   .max(5, "Дайте оценку от 0 до 5"),
+               sugar: Yup.number()
+                   .min(0, "Дайте оценку от 0 до 5")
+                   .max(5, "Дайте оценку от 0 до 5"),
+               smoking: Yup.number()
+                   .min(0, "Дайте оценку от 0 до 5")
+                   .max(5, "Дайте оценку от 0 до 5"),
+               alcohol: Yup.number()
+                   .min(0, "Дайте оценку от 0 до 5")
+                   .max(5, "Дайте оценку от 0 до 5"),
            });
 
 class App extends Component {
@@ -71,6 +83,10 @@ class App extends Component {
                                     <LabeledNumberField name="physicalFrequency"
                                                         labelText="Количество физической активности, (0-5)"/>
                                     <LabeledNumberField name="physicalState" labelText="Физическое состояние, (0-5)"/>
+                                    <LabeledNumberField name="coffee" labelText="Кофе, (0-5)"/>
+                                    <LabeledNumberField name="alcohol" labelText="Алкоголь, (0-5)"/>
+                                    <LabeledNumberField name="sugar" labelText="Сахар, (0-5)"/>
+                                    <LabeledNumberField name="smoking" labelText="Курение, (0-5)"/>
                                 </Row>
                                 <Row className="justify-content-md-center">
                                     <Button type="submit" disabled={isSubmitting}>
