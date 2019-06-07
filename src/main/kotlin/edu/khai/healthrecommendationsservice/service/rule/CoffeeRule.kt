@@ -12,8 +12,8 @@ class CoffeeRule : Rule<Int?>() {
     override fun evaluateRecommendation(metric: Int?): String? {
         return when (metric) {
             null -> null
-            0 -> "rule.coffee.low"
-            in 1..2 -> "rule.coffee.norm"
+            0 -> "rule.coffee.norm"
+            in 1..2 -> "rule.coffee.moderate"
             in 3..4 -> "rule.coffee.high"
             else -> "rule.coffee.extremely-high"
         }

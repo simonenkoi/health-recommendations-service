@@ -9,8 +9,8 @@ internal class CoffeeRuleTest {
     private var coffeeRule: CoffeeRule = CoffeeRule()
 
     companion object {
-        const val LOW_RECOMMENDATION: String = "rule.coffee.low"
         const val NORM_RECOMMENDATION: String = "rule.coffee.norm"
+        const val MODERATE_RECOMMENDATION: String = "rule.coffee.moderate"
         const val HIGH_RECOMMENDATION: String = "rule.coffee.high"
         const val EXTREMELY_HIGH_RECOMMENDATION: String = "rule.coffee.extremely-high"
     }
@@ -24,13 +24,13 @@ internal class CoffeeRuleTest {
     @Test
     fun lowCoffeeShouldReturnCorrectRecommendation() {
         val recommendation = coffeeRule.getRecommendation(Metrics(coffee = 0))
-        assertEquals(LOW_RECOMMENDATION, recommendation)
+        assertEquals(NORM_RECOMMENDATION, recommendation)
     }
 
     @Test
     fun normCoffeeShouldReturnCorrectRecommendation() {
         val recommendation = coffeeRule.getRecommendation(Metrics(coffee = 1))
-        assertEquals(NORM_RECOMMENDATION, recommendation)
+        assertEquals(MODERATE_RECOMMENDATION, recommendation)
     }
 
     @Test

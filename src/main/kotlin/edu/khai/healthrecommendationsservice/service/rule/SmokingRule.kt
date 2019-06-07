@@ -12,8 +12,8 @@ class SmokingRule : Rule<Int?>() {
     override fun evaluateRecommendation(metric: Int?): String? {
         return when (metric) {
             null -> null
-            0 -> "rule.smoking.low"
-            in 1..2 -> "rule.smoking.norm"
+            0 -> "rule.smoking.norm"
+            in 1..2 -> "rule.smoking.moderate"
             in 3..4 -> "rule.smoking.high"
             else -> "rule.smoking.extremely-high"
         }

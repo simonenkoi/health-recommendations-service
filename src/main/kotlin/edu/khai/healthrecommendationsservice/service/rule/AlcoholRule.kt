@@ -12,8 +12,8 @@ class AlcoholRule : Rule<Int?>() {
     override fun evaluateRecommendation(metric: Int?): String? {
         return when (metric) {
             null -> null
-            0 -> "rule.alcohol.low"
-            in 1..2 -> "rule.alcohol.norm"
+            0 -> "rule.alcohol.norm"
+            in 1..2 -> "rule.alcohol.moderate"
             in 3..4 -> "rule.alcohol.high"
             else -> "rule.alcohol.extremely-high"
         }

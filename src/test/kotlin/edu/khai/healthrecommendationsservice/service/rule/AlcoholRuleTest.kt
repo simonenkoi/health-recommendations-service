@@ -9,8 +9,8 @@ internal class AlcoholRuleTest {
     private var alcoholRule: AlcoholRule = AlcoholRule()
 
     companion object {
-        const val LOW_RECOMMENDATION: String = "rule.alcohol.low"
         const val NORM_RECOMMENDATION: String = "rule.alcohol.norm"
+        const val MODERATE_RECOMMENDATION: String = "rule.alcohol.moderate"
         const val HIGH_RECOMMENDATION: String = "rule.alcohol.high"
         const val EXTREMELY_HIGH_RECOMMENDATION: String = "rule.alcohol.extremely-high"
     }
@@ -24,13 +24,13 @@ internal class AlcoholRuleTest {
     @Test
     fun lowAlcoholShouldReturnCorrectRecommendation() {
         val recommendation = alcoholRule.getRecommendation(Metrics(alcohol = 0))
-        assertEquals(LOW_RECOMMENDATION, recommendation)
+        assertEquals(NORM_RECOMMENDATION, recommendation)
     }
 
     @Test
     fun normAlcoholShouldReturnCorrectRecommendation() {
         val recommendation = alcoholRule.getRecommendation(Metrics(alcohol = 1))
-        assertEquals(NORM_RECOMMENDATION, recommendation)
+        assertEquals(MODERATE_RECOMMENDATION, recommendation)
     }
 
     @Test

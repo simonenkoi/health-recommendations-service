@@ -9,8 +9,8 @@ internal class SmokingRuleTest {
     private var smokingRule: SmokingRule = SmokingRule()
 
     companion object {
-        const val LOW_RECOMMENDATION: String = "rule.smoking.low"
         const val NORM_RECOMMENDATION: String = "rule.smoking.norm"
+        const val MODERATE_RECOMMENDATION: String = "rule.smoking.moderate"
         const val HIGH_RECOMMENDATION: String = "rule.smoking.high"
         const val EXTREMELY_HIGH_RECOMMENDATION: String = "rule.smoking.extremely-high"
     }
@@ -24,13 +24,13 @@ internal class SmokingRuleTest {
     @Test
     fun lowSmokingShouldReturnCorrectRecommendation() {
         val recommendation = smokingRule.getRecommendation(Metrics(smoking = 0))
-        assertEquals(LOW_RECOMMENDATION, recommendation)
+        assertEquals(NORM_RECOMMENDATION, recommendation)
     }
 
     @Test
     fun normSmokingShouldReturnCorrectRecommendation() {
         val recommendation = smokingRule.getRecommendation(Metrics(smoking = 1))
-        assertEquals(NORM_RECOMMENDATION, recommendation)
+        assertEquals(MODERATE_RECOMMENDATION, recommendation)
     }
 
     @Test

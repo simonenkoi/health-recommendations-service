@@ -9,8 +9,8 @@ internal class SugarRuleTest {
     private var sugarRule: SugarRule = SugarRule()
 
     companion object {
-        const val LOW_RECOMMENDATION: String = "rule.sugar.low"
         const val NORM_RECOMMENDATION: String = "rule.sugar.norm"
+        const val MODERATE_RECOMMENDATION: String = "rule.sugar.moderate"
         const val HIGH_RECOMMENDATION: String = "rule.sugar.high"
         const val EXTREMELY_HIGH_RECOMMENDATION: String = "rule.sugar.extremely-high"
     }
@@ -24,13 +24,13 @@ internal class SugarRuleTest {
     @Test
     fun lowSugarShouldReturnCorrectRecommendation() {
         val recommendation = sugarRule.getRecommendation(Metrics(sugar = 0))
-        assertEquals(LOW_RECOMMENDATION, recommendation)
+        assertEquals(NORM_RECOMMENDATION, recommendation)
     }
 
     @Test
     fun normSugarShouldReturnCorrectRecommendation() {
         val recommendation = sugarRule.getRecommendation(Metrics(sugar = 1))
-        assertEquals(NORM_RECOMMENDATION, recommendation)
+        assertEquals(MODERATE_RECOMMENDATION, recommendation)
     }
 
     @Test
