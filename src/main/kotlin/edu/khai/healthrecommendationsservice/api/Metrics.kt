@@ -15,5 +15,17 @@ data class Metrics(
     val physicalFrequency: Int? = null,
     @get:Min(0)
     @get:Max(5)
-    val physicalState: Int? = null
+    val physicalState: Int? = null,
+    @get:Min(0)
+    @get:Max(5)
+    val smoking: Int? = null,
+    @get:Min(0)
+    @get:Max(5)
+    val alcohol: Int? = null,
+    @get:Min(0)
+    @get:Max(5)
+    val sugar: Int? = null,
+    @get:Min(0)
+    @get:Max(5)
+    val coffee: Int? = null
 )
