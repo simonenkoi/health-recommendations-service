@@ -11,7 +11,7 @@ const LabeledNumberField = (props) => {
                     <label htmlFor={props.name}>{props.labelText}</label>
                 </Col>
                 <Col sm={6}>
-                    <Field type="number" id={props.name} name={props.name} style={{width: "100%"}}/>
+                    <Field type="number" id={props.name} name={props.name} style={{width: "15%"}}/>
                 </Col>
             </Row>
             <Row className="justify-content-md-center text-danger">
