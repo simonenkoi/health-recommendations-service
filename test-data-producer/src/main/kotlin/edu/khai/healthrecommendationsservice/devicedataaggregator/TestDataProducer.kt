@@ -1,5 +1,6 @@
 package edu.khai.healthrecommendationsservice.devicedataaggregator
 
+import edu.khai.healthrecommendationsservice.commons.KafkaTopics.Companion.DEVICE_DATA
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -15,7 +16,7 @@ class TestDataProducer(
     override fun run(vararg args: String?) {
         while (true) {
             val metrics = generator.generateRandomMetrics()
-            template.send(KafkaProducerConfig.DEVICE_DATA_TOPIC, "1", metrics)
+            template.send(DEVICE_DATA, "1", metrics)
             sleep(100)
         }
     }
