@@ -1,4 +1,4 @@
-package edu.khai.healthrecommendationsservice.testdataproducer
+package edu.khai.healthrecommendationsservice.devicedataaggregator
 
 import org.apache.kafka.clients.admin.NewTopic
 import org.apache.kafka.clients.producer.ProducerConfig

@@ -1,4 +1,4 @@
-package edu.khai.healthrecommendationsservice.testdataproducer
+package edu.khai.healthrecommendationsservice.devicedataaggregator
 
 import edu.khai.healthrecommendationsservice.api.Metrics
 import org.apache.commons.lang3.RandomUtils
