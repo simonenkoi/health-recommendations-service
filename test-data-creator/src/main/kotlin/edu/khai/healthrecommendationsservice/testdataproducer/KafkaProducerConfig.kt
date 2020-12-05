@@ -16,6 +16,10 @@ import org.springframework.kafka.support.serializer.JsonSerializer
 @Configuration
 class KafkaProducerConfig {
 
+    companion object {
+        const val DEVICE_DATA_TOPIC: String = "events_device_data_json_v1"
+    }
+
     @Value("\${kafka.bootstrap-servers}")
     private lateinit var bootstrapServers: String
 
@@ -33,5 +37,5 @@ class KafkaProducerConfig {
     fun kafkaTemplate(): KafkaTemplate<String, Any> = KafkaTemplate(producerFactory())
 
     @Bean
-    fun topic1(): NewTopic = TopicBuilder.name("events_iot_json_v1").build()
+    fun topic1(): NewTopic = TopicBuilder.name(DEVICE_DATA_TOPIC).build()
 }

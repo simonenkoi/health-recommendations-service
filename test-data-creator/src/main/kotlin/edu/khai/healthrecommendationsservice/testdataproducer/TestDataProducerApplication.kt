@@ -15,7 +15,7 @@ class TestDataProducerApplication(
     override fun run(vararg args: String?) {
         while (true) {
             val metrics = generator.generateRandomMetrics()
-            template.send("events_iot_json_v1", metrics)
+            template.send(KafkaProducerConfig.DEVICE_DATA_TOPIC, metrics)
             sleep(100)
         }
     }
