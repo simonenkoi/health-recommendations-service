@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 class BmiRule : Rule<Double?>() {
     override fun evaluateMetric(metrics: Metrics): Double? {
         return if (metrics.weight != null && metrics.height != null) {
-            metrics.weight / Math.pow(metrics.height / 100, 2.0)
+            metrics.weight!! / Math.pow(metrics.height!! / 100, 2.0)
         } else {
             null
         }
