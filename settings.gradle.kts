@@ -1,7 +1,5 @@
 pluginManagement {
     repositories {
-        maven { url = uri("https://repo.spring.io/snapshot") }
-        maven { url = uri("https://repo.spring.io/milestone") }
         gradlePluginPortal()
     }
     resolutionStrategy {
@@ -12,5 +10,6 @@ pluginManagement {
         }
     }
 }
+
 rootProject.name = "health-recommendations-service"
-include("commons", "recommendations-service", "test-data-producer", "device-data-aggregator")
+include("commons", "recommendations-service", "test-data-producer", "device-data-aggregator", "device-data-service")

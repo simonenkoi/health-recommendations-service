@@ -20,7 +20,7 @@ class RecommendationHandler constructor(
         return request.bodyToMono(Metrics::class.java)
             .filter { it.validate(validator) }
             .flatMap { recommendationService.getRecommendations(it).collectList() }
-            .flatMap { ok().contentType(MediaType.APPLICATION_JSON).syncBody(it) }
+            .flatMap { ok().contentType(MediaType.APPLICATION_JSON).bodyValue(it) }
             .switchIfEmpty(notFound().build())
     }
 
