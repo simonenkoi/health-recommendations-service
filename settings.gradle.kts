@@ -13,4 +13,4 @@ pluginManagement {
     }
 }
 rootProject.name = "health-recommendations-service"
-include("api", "recommendations-service", "test-data-creator")
+include("api", "recommendations-service", "test-data-producer")
